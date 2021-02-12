@@ -1461,7 +1461,11 @@ class MDDatePicker(BaseDialogPicker):
         )
         super().__init__(**kwargs)
         self.theme_cls.bind(device_orientation=self.on_device_orientation)
-
+        self._currently_bound_properties.extend(
+            [
+                {"device_orientation": self.on_device_orientation},
+            ]
+        )
         if self.max_date and self.min_date:
             if self.min_date and not isinstance(self.min_date, date):
                 raise DatePickerTypeDateError(

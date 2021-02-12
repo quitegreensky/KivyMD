@@ -167,6 +167,7 @@ from kivy.utils import get_color_from_hex
 from kivymd import images_path
 from kivymd.color_definitions import colors, hue, palette
 from kivymd.material_resources import DEVICE_IOS, DEVICE_TYPE
+from kivymd.refrencekandler import RefrenceHandler
 
 
 class ThemeManager(EventDispatcher):
@@ -1055,7 +1056,7 @@ class ThemeManager(EventDispatcher):
         self.colors = colors
 
 
-class ThemableBehavior(EventDispatcher):
+class ThemableBehavior(RefrenceHandler, EventDispatcher):
     theme_cls = ObjectProperty()
     """
     Instance of :class:`~ThemeManager` class.

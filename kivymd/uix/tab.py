@@ -517,7 +517,7 @@ Builder.load_string(
         self._set_start_tab = True
     on_tab_bar:
         self.text_size = (None, None) \
-        if self.tab_bar.parent.allow_stretch else (self.width, None) 
+        if self.tab_bar.parent.allow_stretch else (self.width, None)
     on_ref_press:
         self.tab_bar.parent.dispatch(\
         "on_ref_press",
@@ -1108,6 +1108,11 @@ class MDTabs(ThemableBehavior, SpecificBackgroundColorBehavior, AnchorLayout):
         self.register_event_type("on_slide_progress")
         Clock.schedule_once(self._carousel_bind, 1)
         self.theme_cls.bind(primary_palette=self.update_icon_color)
+        self._currently_bound_properties.extend(
+            [
+                {"primary_palette": self.update_icon_color},
+            ]
+        )
 
     def update_icon_color(self, instance, value):
         for tab_label in self.get_tab_list():

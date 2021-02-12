@@ -682,6 +682,11 @@ class MDToolbar(NotchedBox):
         self.bind(specific_text_color=self.update_action_bar_text_colors)
         # self.bind(opposite_colors=self.update_opposite_colors)
         self.theme_cls.bind(primary_palette=self.update_md_bg_color)
+        self._currently_bound_properties.extend(
+            [
+                {"primary_palette": self.update_md_bg_color},
+            ]
+        )
         Clock.schedule_once(
             lambda x: self.on_left_action_items(0, self.left_action_items)
         )

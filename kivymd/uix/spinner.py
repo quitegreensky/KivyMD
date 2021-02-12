@@ -211,6 +211,9 @@ class MDSpinner(ThemableBehavior, Widget):
         self._alpha_anim_out = Animation(_alpha=0, duration=0.3, t="out_quad")
         self._alpha_anim_out.bind(on_complete=self._reset)
         self.theme_cls.bind(primary_color=self._update_color)
+        self._currently_bound_properties.append(
+            {"primary_color": self._update_color}
+        )
         Clock.schedule_once(self.check_determinate)
 
     def check_determinate(self, interval):

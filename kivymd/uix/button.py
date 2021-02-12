@@ -892,6 +892,12 @@ class BaseButton(ThemableBehavior, ButtonBehavior, AnchorLayout):
             self.md_bg_color_disabled = self.theme_cls.disabled_hint_text_color
         self.theme_cls.bind(primary_palette=self.update_md_bg_color)
         self.theme_cls.bind(theme_style=self.update_text_color)
+        self._currently_bound_properties.extend(
+            [
+                {"primary_palette": self.update_md_bg_color},
+                {"theme_style": self.update_text_color},
+            ]
+        )
         Clock.schedule_once(self.set_md_bg_color)
         if not self.text_color:
             self.text_color = self.theme_cls.text_color
@@ -1410,6 +1416,11 @@ class MDIconButton(BaseRoundButton, BasePressedButton):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.theme_cls.bind(primary_palette=self.update_md_bg_color)
+        self._currently_bound_properties.extend(
+            [
+                {"primary_palette": self.update_md_bg_color},
+            ]
+        )
         Clock.schedule_once(self.set_size)
         self.on_md_bg_color(self, [0.0, 0.0, 0.0, 0.0])
 
@@ -1447,6 +1458,11 @@ class MDFloatingActionButton(
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.theme_cls.bind(primary_palette=self.update_md_bg_color)
+        self._currently_bound_properties.extend(
+            [
+                {"primary_palette": self.update_md_bg_color},
+            ]
+        )
         Clock.schedule_once(self.set_md_bg_color)
         Clock.schedule_once(self.set_size)
         Clock.schedule_once(self.update_text_color)

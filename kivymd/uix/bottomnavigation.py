@@ -367,6 +367,11 @@ class MDBottomNavigationHeader(ThemableBehavior, ButtonBehavior, AnchorLayout):
         self._label = self.ids._label
         self._label_font_size = sp(12)
         self.theme_cls.bind(disabled_hint_text_color=self._update_theme_style)
+        self._currently_bound_properties.extend(
+            [
+                {"disabled_hint_text_color": self._update_theme_style},
+            ]
+        )
         self.active = False
 
     def on_press(self):

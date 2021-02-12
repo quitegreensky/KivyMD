@@ -333,6 +333,12 @@ class MDCheckbox(CircularRippleBehavior, ToggleButtonBehavior, MDIcon):
         )
         self.theme_cls.bind(primary_color=self.update_primary_color)
         self.theme_cls.bind(theme_style=self.update_primary_color)
+        self._currently_bound_properties.extend(
+            [
+                {"primary_color": self.update_primary_color},
+                {"theme_style": self.update_primary_color},
+            ]
+        )
         self.update_icon()
         self.update_color()
 
@@ -524,6 +530,13 @@ class MDSwitch(ThemableBehavior, ButtonBehavior, FloatLayout):
             theme_style=self._set_colors,
             primary_color=self._set_colors,
             primary_palette=self._set_colors,
+        )
+        self._currently_bound_properties.extend(
+            [
+                {"theme_style": self._set_colors},
+                {"primary_color": self._set_colors},
+                {"primary_palette": self._set_colors},
+            ]
         )
         self.bind(active=self._update_thumb_pos)
         Clock.schedule_once(self._set_colors)
